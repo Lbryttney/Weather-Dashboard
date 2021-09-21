@@ -7,7 +7,7 @@ function handleFormSubmit(event) {
   var formInputVal = document.querySelector('#city').value;
 
   if (!formInputVal) {
-    console.error('Please input a city!');
+    console.error('Please input a city,state code!');
     return;
   }
   
