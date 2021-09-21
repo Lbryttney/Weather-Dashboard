@@ -7,7 +7,7 @@ var userFormEl = document.querySelector('#user-form');
 
 function getParams() {
   //get city name from user input
-  var citySearch = document.location.search.split(',');
+  var citySearch = document.location.search.split('%2C');
   console.log(citySearch);
 
   var cityName = citySearch[0].split('=').pop();
