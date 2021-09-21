@@ -1,51 +1,32 @@
 var userFormEl = document.querySelector('#user-form');
-var cityButtonsEl = document.querySelector('#city-buttons');
-var cityInputEl = document.querySelector('#city');
-var todayOutputEl = document.querySelector('#today');
+var userButtonEl = document.querySelector('#city-btn');
 
-var formSubmitHandler = function (event) {
+function handleFormSubmit(event) {
   event.preventDefault();
 
-  var city = cityInputEl.value.trim();
-  
-  if (city) {
-    getWeather(city);
-  
-    todayOutputEl.textContent = '';
-    cityInputEl.value = '';
-  } else {
-    alert('Please enter a city');
+  var formInputVal = document.querySelector('#city').value;
+
+  if (!formInputVal) {
+    console.error('Please input a city!');
+    return;
   }
-};
-
-var getWeather = function (user) {
-    var apiUrl = 'http://maps.openweathermap.org/maps/2.0/weather/' + TA2/{z}/{x}/{y} + '?appid=370e1afa78a8863cb47ffb5930fa4e60';
   
-    fetch(apiUrl)
-      .then(function (response) {
-        if (response.ok) {
-          console.log(response);
-          response.json().then(function (data) {
-            console.log(data);
-            displayWeather(data, user);
-          });
-        } else {
-          alert('Error: ' + response.statusText);
-        }
-      })
-      .catch(function (error) {
-        alert('Unable to connect to OpenWeather');
-      });
-  };
 
+  var queryString = './weather.html?q=' + formInputVal;
 
-  var displayWeather = function (cities, searchTerm) {
-    if (cities.length === 0) {
-      todayOutputEl.textContent = 'No weather found.';
-      return;
-    }
+  location.assign(queryString);
+}
+
+function handleButtonClick(event) {
+    event.preventDefault();
   
-  };
+    var buttonInputVal = userButtonEl.value;
+    console.log(buttonInputVal);
 
-userFormEl.addEventListener('submit', formSubmitHandler);
-// cityButtonsEl.addEventListener('click', buttonClickHandler);
+    var queryString = './weather.html?q=' + buttonInputVal;
+  
+    location.assign(queryString);
+  }
+
+userFormEl.addEventListener('submit', handleFormSubmit);
+userButtonEl.addEventListener('click', handleButtonClick);
